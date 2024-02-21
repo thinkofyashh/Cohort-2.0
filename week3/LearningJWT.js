@@ -3,7 +3,9 @@ const jwt=require("jsonwebtoken")
 const jwtPassword="123456"
 
 const app=express()
-const users=[{username:"yashrawat682@gmail.com",password:"123",name:"yash rawat"},{username:"raman@gmail.com",password:"123321",name:"raman bhalla"},{username:"priyasingh@gmail.com",password:"123321",name:"Priya agg"}];
+const users=[{username:"yashrawat682@gmail.com",password:"123",name:"yash rawat"},
+{username:"raman@gmail.com",password:"123321",name:"raman bhalla"},
+{username:"priyasingh@gmail.com",password:"123321",name:"Priya agg"}];
 function userExists(username,password){
     for(let i=0;i<users.length;i++){
         if(username==users[i].username && password==users[i].password){
