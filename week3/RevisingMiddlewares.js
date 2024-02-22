@@ -1,26 +1,17 @@
 const express=require("express")
 const app=express()
-function oldEnough(age){
+function oldEnoughMiddlewares(req,res,next){
+    const age=req.query.age
     if(age>=14){
-        return true
+        next()
     }else{
-        return false
+        return res.status(400).json({msg:"you cant ride this ride beacuse you are not eligible for it ."})
     }
 }
-app.get("/ride1",function(req,res){
-    const age =req.query.age;
-    if(!oldEnough(age)){
-        return res.json({msg:"you cant ride this ride because you are not long enough"})
-
-    }
+app.use(oldEnoughMiddlewares);
+app.get("/ride1",function(req,res){    
     res.json({msg:" you can successfully ride this  "})
 })
-app.get("/ride2",function(req,res){
-    const age =req.query.age;
-    if(!oldEnough(age)){
-        return res.json({msg:"you cant ride this ride because you are not long enough"})
-
-    }
-    res.json({msg:" you can successfully ride the ride 2 "})
+app.get("/ride2",function(req,res){ res.json({msg:" you can successfully ride the ride 2 "})
 })
 app.listen(3000)
