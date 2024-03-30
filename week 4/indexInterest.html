@@ -1,0 +1,21 @@
+<html>
+<script>
+    async function cal(){
+    const p=document.getElementById("Principal").value
+    const r=document.getElementById("Rate").value
+    const t=document.getElementById("time").value
+
+    const response=await fetch("http://localhost:3000/interest?principal="+p+"&rate="+r+"&time="+t)
+    const ans=await response.text()
+    document.getElementById("FinalAns").innerHTML=ans;
+    }
+</script>
+
+<body>
+    <input oninput="cal()" type="text" placeholder="Principal Amount" id="Principal"><br></br>
+    <input oninput="cal()" type="text" placeholder="Rate of Interest" id="Rate"><br></br>
+    <input oninput="cal()" type="text" placeholder="Time" id="time"><br></br>
+    <button onclick="cal()">Calculate</button> 
+    <div id="FinalAns"></div>
+</body>
+</html>
