@@ -1,5 +1,13 @@
 <html>
 <script>
+    let timeout;
+    function debouncingcal(){
+        clearTimeout(timeout)
+        timeout=setTimeout(function(){
+            cal()
+        },1000)
+
+    }
     async function cal(){
     const p=document.getElementById("Principal").value
     const r=document.getElementById("Rate").value
@@ -12,9 +20,9 @@
 </script>
 
 <body>
-    <input oninput="cal()" type="text" placeholder="Principal Amount" id="Principal"><br></br>
-    <input oninput="cal()" type="text" placeholder="Rate of Interest" id="Rate"><br></br>
-    <input oninput="cal()" type="text" placeholder="Time" id="time"><br></br>
+    <input oninput="debouncingcal()" type="text" placeholder="Principal Amount" id="Principal"><br></br>
+    <input oninput="debouncingcal()" type="text" placeholder="Rate of Interest" id="Rate"><br></br>
+    <input oninput="debouncingcal()" type="text" placeholder="Time" id="time"><br></br>
     <button onclick="cal()">Calculate</button> 
     <div id="FinalAns"></div>
 </body>
