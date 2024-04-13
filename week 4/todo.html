@@ -50,7 +50,14 @@
                     parent.appendChild(child)
                 }
             }
-            updateDomAcctoState([{title:"gym",description:"at 5-6",id:2},{title:"gym 33",description:"at 53-6",id:2}])
+          //  updateDomAcctoState([{title:"gym",description:"at 5-6",id:2},{title:"gym 33",description:"at 53-6",id:2}])
+
+          window.setInterval(async function(){
+            const res=await fetch("https://sum-server.100xdevs.com/todos")
+            const json=await res.json()
+            updateDomAcctoState(json.todos)
+
+          },5000)
         </script>
     
     
