@@ -1,21 +1,34 @@
 <!DOCTYPE html>
-<html >
-<head>
+<html>
 
-    
-</head>
-<script>
-    function onButtonPressed(){
-        const currentvalue=document.getElementById("btn").innerHTML
-        console.log(currentvalue.split(" "))
-        const currentCounter=currentvalue.split(" ")[1]
-        const newCounter=parseInt(currentCounter)+1
-        document.getElementById("btn").innerHTML="Counter"+" "+newCounter;
-
-    }
-</script>
 <body>
-    <button id="btn" onclick="onButtonPressed()">Counter 0</button>
+    <div id="buttonParent"></div>
+    <script>
+        let state={
+            count:0
+        }
+
+        function onButtonPress(){
+            state.count++;
+            buttonComponentReRender()
+        }
+
+        function buttonComponentReRender(){
+            document.getElementById("buttonParent").innerHTML=""
+            const component=buttonComponent(state.count)
+            document.getElementById("buttonParent").appendChild(component)
+        }
+
+        function buttonComponent(count){
+            const button=document.createElement("button")
+            button.innerHTML=`Counter ${count}`
+            button.setAttribute("onClick",`onButtonPress()`)
+            return button;
+        }
+        buttonComponentReRender()
+    </script>
+    
+
     
 </body>
 </html>
