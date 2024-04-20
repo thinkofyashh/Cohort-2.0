@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    
+</head>
+<script>
+    function onButtonPressed(){
+        const currentvalue=document.getElementById("btn").innerHTML
+        console.log(currentvalue.split(" "))
+        const currentCounter=currentvalue.split(" ")[1]
+        const newCounter=parseInt(currentCounter)+1
+        document.getElementById("btn").innerHTML="Counter"+" "+newCounter;
+
+    }
+</script>
+<body>
+    <button id="btn" onclick="onButtonPressed()">Counter 0</button>
+    
+</body>
+</html>
