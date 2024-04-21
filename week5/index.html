@@ -4,21 +4,21 @@
 <body>
     <div id="buttonParent"></div>
     <script>
-        // all these work will be taken bu the react itself we just have to initialise the state and update it .
+       
         let state={
             count:0
         }
 
         function onButtonPress(){
             state.count++;
-           // buttonComponentReRender()
+            buttonComponentReRender()
         }
 
-       // function buttonComponentReRender(){
-       //     document.getElementById("buttonParent").innerHTML=""
-        //    const component=buttonComponent(state.count)
-        //    document.getElementById("buttonParent").appendChild(component)
-       // }
+        function buttonComponentReRender(){
+            document.getElementById("buttonParent").innerHTML=""
+          const component=buttonComponent(state.count)
+            document.getElementById("buttonParent").appendChild(component)
+        }
 
         function buttonComponent(count){
             const button=document.createElement("button")
@@ -26,7 +26,7 @@
             button.setAttribute("onClick",`onButtonPress()`)
             return button;
         }
-       // buttonComponentReRender()
+        buttonComponentReRender()
     </script>
     
 
