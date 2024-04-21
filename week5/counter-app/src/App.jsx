@@ -1,20 +1,60 @@
-// we first initialised the state .
-import { useState } from "react";
-
+import React, { useState } from "react";
 
 function App() {
-//initialising the state .
-const [count,setCount]=useState(0);
-//updating the state
+  // Initializing the state using useState
+  const [todos, setTodos] = useState([
+    {
+      title: "Go to Gym",
+      description: "Gym from 7-9",
+      completed: false
+    },
+    {
+      title: "Do DSA",
+      description: "Do DSA from 8-10",
+      completed: true
+    }
+  ]);
   function onClickHandler(){
-    setCount(count+1)
+    setTodos([...todos,{
+      title:"another title",
+      description:"another description"
+    }])
   }
+
   return (
-    // defining component .
     <div>
-      <button onClick={onClickHandler}>Counter {count}</button>
+      <button onClick={onClickHandler}>Random ToDo adder</button>
+
+      <Todo title="Gym" description="at 2-3 am"></Todo>
+
+      <Todo title={todos[0].title} description={todos[0].description}></Todo>
+      
+      {todos.map(function(t){
+       return  <Todo title={t.title} description={t.description}></Todo>
+      })}
+      
     </div>
-  )
+  );
+}
+// todos:
+//title
+//description
+// define a component 
+function Todo(props){
+  return <div>
+    <h1>{props.title}</h1>
+    <h2>{props.description}</h2>
+  </div>
+
 }
 
-export default App
+function CustomButton(props) {
+  function onClickHandler() {
+    props.setCount(props.count + 1);
+  }
+  return <button onClick={onClickHandler}>Counter {props.count}</button>;
+}
+
+export default App;
+
+
