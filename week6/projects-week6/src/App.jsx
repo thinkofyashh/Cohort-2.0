@@ -1,16 +1,27 @@
 import { useState } from "react"
 function App() {
-  const [count,setCount]=useState("my name is Yash");
-function updateTitle(){
-  setCount("my name is " + Math.random())
-}
   return (
    <div>
-      <button onClick={updateTitle}>Click me to Change the Title</button>
-     <Header title={count}></Header>
-      <Header title="my name is raman"></Header>
+       <HeaderWithButton></HeaderWithButton>
+      <Header title="my name is raman1"></Header>
+      <Header title="my name is raman2"></Header>
+      <Header title="my name is raman22"></Header>
+      <Header title="my name is raman31"></Header>
    </div>
   )
+}
+function HeaderWithButton(props){
+  const [title,setTitle]=useState("my name is yash")
+
+  function onClicked(){
+    setTitle("My name is "+ Math.random());
+  }
+  return <>
+  <button onClick={onClicked}>Click the Button</button>
+  <Header title={title}></Header>
+  
+  </>
+
 }
 function Header(props){
   return <div>
