@@ -2,12 +2,14 @@ function App() {
 
  return <div>
   <CardWrapper>
+   
     <div>Hi there </div>
-    <CardWrapper><TextComponent></TextComponent></CardWrapper>
+    
+    <CardWrapper>
+      <TextComponent></TextComponent>
+      </CardWrapper>
 
-  </CardWrapper>
-
-  
+  </CardWrapper> 
  </div>
 }
 
