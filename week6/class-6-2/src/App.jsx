@@ -1,39 +1,46 @@
 import { useEffect, useState } from 'react'
 import axios from "axios"; 
 import './App.css'
+import { set } from 'zod';
 
 function App() {
-  const [todos, setTodos] = useState([]);
 
-  useEffect(
-    ()=>{
-     async  function fetchdata(){
-      try{
-        const res= await axios.get("https://sum-server.100xdevs.com/todos")
-        setTodos(res.data.todos)
-      }catch(err){
-        console.log(err)
+  const [count,setCount]=useState(1);
 
-      }
-      }
-      fetchdata();
-    }
-    ,[])
+
   return (
    <>
-   {
-    todos.map((todo)=>{
-     return  <Todo title={todo.title} description={todo.description}></Todo>;
-    })
-   }
+   <button onClick={()=>{setCount(1)}}>1</button>
+   <button onClick={()=>{setCount(2)}}>2</button>
+   <button onClick={()=>{setCount(3)}}>3 </button>
+   <button onClick={()=>{setCount(4)}}>4</button>
+   <Todo id ={count}></Todo>
    </>
   )
 }
 
-function Todo({title,description}){
+function Todo({id}){
+// use state 
+  const [Todos,setTodos]=useState({});
+// use effect
+  useEffect(()=>{
+    async function fetchData(){
+    try{
+        const res =await axios.get("https://sum-server.100xdevs.com/todo?id="+ id)
+        setTodos(res.data.todo)
+
+    }catch(err){
+      console.log("error")
+    }
+    }
+    // aysnc-await function 
+    fetchData();
+  },[id])
+
+
   return <div>
-    <h1> {title}  </h1>
-    {description}
+    <h1> {Todos.title}  </h1>
+    {Todos.description}
   </div>
 }
 
