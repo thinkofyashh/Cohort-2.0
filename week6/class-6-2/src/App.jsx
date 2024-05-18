@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { memo } from 'react';
 
 import axios from "axios"; 
@@ -6,10 +6,10 @@ import './App.css'
 import { set } from 'zod';
 function App() {
 let [count,setCount]=useState(1);
-// changed to function 
-function a(){
-  console.log("hi there")
-}
+// wrapping the function inside the useCallback Hook .
+var a = useCallback(()=>{
+  console.log("hello there")
+},[])
   return (
    <>
    <button onClick={()=>{setCount(count=count+1)}}>Counter ({count})</button>
