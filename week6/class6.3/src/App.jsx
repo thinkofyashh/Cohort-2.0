@@ -1,20 +1,20 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
+  
+const divRef=useRef();
 
   useEffect(()=>{setTimeout(()=>{
 
-    document.getElementById("incomeTaxContainer").innerHTML=10
-
+   divRef.current.innerHTML=100
 
   },5000)},[])
   const incomeTax=2000
   return (
     <>
-    hi your income tax is <div id="incomeTaxContainer">{incomeTax}</div>
+    hi your income tax is <div ref={divRef}>{incomeTax}</div>
     </>
   )
 }
-
 export default App
