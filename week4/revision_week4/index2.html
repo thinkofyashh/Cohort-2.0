@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM</title>
+
+</head>
+
+
+<body>
+
+    <input id="title" type="text" placeholder="enter Title">
+    <br>
+    <input id="description" type="text" placeholder="enter description">
+    <br>
+    <div id="container">
+
+    </div>
+    <script>
+        let globalId=1;
+    
+        function markAsDone(todoid){
+            const parent=document.getElementById(todoid)
+            parent.innerHTML="Done!"
+        }
+        function createChild(title,description,id){
+            const child=document.createElement("div")
+            const firstGrandChild=document.createElement("div")
+            firstGrandChild.innerHTML=title
+            const SecondGrandChild=document.createElement("div")
+            SecondGrandChild.innerHTML=description
+            const thirdGrandChild=document.createElement("button")
+            thirdGrandChild.innerHTML="Mark as Done"
+            thirdGrandChild.setAttribute("onClick",`markAsDone(${id})`)
+            child.appendChild(firstGrandChild)
+            child.appendChild(SecondGrandChild)
+            child.appendChild(thirdGrandChild)
+            thirdGrandChild.setAttribute("id",id)
+            return child;
+    
+        }
+        function addtodo(){
+    
+            const title=document.getElementById("title").value
+            const description=document.getElementById("description").value 
+    
+            const parent =document.getElementById("container")
+    
+            parent.appendChild(createChild(title,description,globalId++))
+    
+    
+    
+        }
+        function updateDomAcctoState(state){
+            const parent=document.getElementById("container")
+            parent.innerHTML="";
+            for(let i=0;i<state.length;i++){
+                parent.appendChild(createChild(state[i].title,state[i].description,state[i].id))
+            }
+        }
+
+        window.setInterval(async function(){
+
+            const res=await fetch("https://sum-server.100xdevs.com/todos")
+            const json=await res.json()
+            updateDomAcctoState(json.todos)
+
+        },1000)
+    
+        /*updateDomAcctoState([{
+            title:"go to gym",
+            description:"go to gym form 6am to 7am",
+            id:1
+        },{
+            title:"DSA",
+            description:" 6am to 7am",
+            id:2
+    
+        }])
+        */
+    </script>
+    
+</body>
+</html>

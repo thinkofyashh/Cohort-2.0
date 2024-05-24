@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Revision</title>
+</head>
+<script>
+    function populateDiv(){
+        const element= document.getElementById("result")
+        element.innerHTML="Hello bhai "
+    }
+
+    async function  sum(){
+        const a=document.getElementById("a").value
+        const b=document.getElementById("b").value 
+        const res=await fetch("http://localhost:3000/?first="+a+"&second="+b) 
+        const finalans=await res.text()
+        document.getElementById("result").innerHTML=finalans
+
+    }
+</script>
+<body>
+    <input oninput="sum()" id="a" type="text" placeholder="First Number"><br>
+    <br>
+    <input oninput="sum()" id="b" type="text" placeholder="Second Number"><br>
+
+    <br>
+
+    <button  onclick="sum()">
+        Calculate Sum 
+    </button>
+    <div id ="result"> </div>
+</body>
+</html>

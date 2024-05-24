@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Interest</title>
+</head>
+<script>
+let timeout;
+function debouncing(){
+
+    clearTimeout(timeout);
+
+    timeout= setTimeout(()=>{
+        simpleInterest()
+    },1000)
+}
+
+    async function simpleInterest(){
+        const p=document.getElementById("p").value
+        const t=document.getElementById("t").value
+        const I=document.getElementById("I").value
+
+        const res=await fetch("http://localhost:3000/simpleInterest?principal="+p+"&time="+t+"&interest="+I)
+        const final=await res.text()
+
+        document.getElementById("result").innerHTML=final
+
+
+
+
+    }
+
+</script>
+<body>
+
+    <input oninput="debouncing()" id="p" type="text" placeholder="Principal">
+    <br>
+    <input oninput="debouncing()" id="t" type="text" placeholder="Time">
+    <br>
+    <input oninput="debouncing()" id="I" type="text" placeholder="Interest">
+    <br>
+    <button onclick="simpleInterest()">calculate </button>    
+
+    <div id="result"></div>
+</body>
+</html>
