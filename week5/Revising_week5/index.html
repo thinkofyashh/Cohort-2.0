@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>Revising</title>
+</head>
+<body>
+    
+<div id="container"> 
+
+</div>
+<script>
+    //global state 
+    let state={
+        count:0
+    }
+
+    function CountUpdate(){
+        state.count=state.count+1;
+        ButtonComponentReRender()
+        //ButtonComponent(state.count)
+    }
+
+    function ButtonComponentReRender(){
+        const parent=document.getElementById("container").innerHTML="";
+        document.getElementById("container").appendChild(ButtonComponent(state.count));
+
+    }
+
+    // Button Component 
+    function ButtonComponent(count){
+        const child=document.createElement("button")
+        child.innerHTML=`Counter ${count}`
+        child.setAttribute("onClick",`CountUpdate()`)
+        return child;
+    }
+
+    ButtonComponentReRender()
+
+
+
+
+</script>
+</body>
+</html>
