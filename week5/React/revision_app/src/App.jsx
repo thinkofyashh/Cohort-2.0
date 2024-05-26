@@ -1,31 +1,21 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { CreateTodo } from './components/CreateTodo'
+import { Todo } from './components/Todos'
 
-function App() {
-  let [count, setCount] = useState(0)
-
-  function onClickHandler(){
-    setCount(count++);
-  }
-
-  return (
+function App() { 
+  const [todos,setTodos]=useState([])
+  fetch("https://sum-server.100xdevs.com/todos").then(
+        async function (data){
+            const res =await data.json();
+            setTodos(res.todos)
+        }
+    )
+ return (
     <>
-      <CustomButton count={count} setCount={setCount}></CustomButton>
-      <CustomButton count={count} setCount={setCount}></CustomButton>
-
-      
-
+    <CreateTodo></CreateTodo>
+    <Todo todos={todos} ></Todo>
     </>
   )
 }
-
-function CustomButton(props){
-  function onClickHandler(){
-    props.setCount(props.count+1);
-  }
-  return <button onClick={onClickHandler} >Counter {props.count}</button>
-}
-
 export default App
