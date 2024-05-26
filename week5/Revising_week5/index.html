@@ -9,16 +9,18 @@
 </div>
 <script>
     //global state 
+
+    // have to take care by the developer it-self
     let state={
         count:0
     }
 
+// by developer
     function CountUpdate(){
         state.count=state.count+1;
         ButtonComponentReRender()
-        //ButtonComponent(state.count)
     }
-
+// react
     function ButtonComponentReRender(){
         const parent=document.getElementById("container").innerHTML="";
         document.getElementById("container").appendChild(ButtonComponent(state.count));
@@ -26,13 +28,14 @@
     }
 
     // Button Component 
+    //developer 
     function ButtonComponent(count){
         const child=document.createElement("button")
         child.innerHTML=`Counter ${count}`
         child.setAttribute("onClick",`CountUpdate()`)
         return child;
     }
-
+// react 
     ButtonComponentReRender()
 
 
