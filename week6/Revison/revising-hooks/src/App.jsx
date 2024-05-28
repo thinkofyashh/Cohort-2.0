@@ -1,22 +1,38 @@
 import { useState } from "react"
 
 function App() {
-const [title,setTitle]=useState("Hello my name is Yash")
 
 console.log("Re - rendered")
 
-function onClickHandler(){
-  setTitle("Hello my name is "+Math.random())
-}
+
   return (
     <>
-    <button onClick={onClickHandler}>Some Thing Will Happen</button>
     <Header title="Hello my nmae is Raman"></Header>
     <Header title="Hello my name is mini"></Header>
     <Header title="hello my name is suchata"></Header>
     <Header title="Hello my name is RamanBahlala"></Header>
     <Header title="hello my name is chandu"></Header>
-    <Header title={title}></Header>
+    <HeaderWithButton></HeaderWithButton>
+    </>
+  )
+}
+
+function HeaderWithButton(){
+  console.log("Component Only re Rendered")
+const [title,setTitle]=useState("Hello my name is Yash")
+
+function onClickHandler(){
+  setTitle("Hello my name is "+Math.random())
+}
+
+
+  return (
+    <>
+
+    <div>{title}</div>
+    <button onClick={onClickHandler}>Some thing is about to change</button>
+
+    
     </>
   )
 }
