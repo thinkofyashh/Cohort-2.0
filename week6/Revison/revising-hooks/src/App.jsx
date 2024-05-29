@@ -1,38 +1,48 @@
-import React,{ Fragment } from "react"
 import { useState } from "react"
-
+import React,{Fragment} from "react"
 function App() {
 
-console.log("Re - rendered")
-const [title,setTitle]=useState("Hello my name is Yash")
-
+const [Todos,setTodos]=useState([
+    {
+    id:1,
+    title:"Gym",
+    description:"from 6to 8 pm"
+  },{
+    id:2,
+    title:"DAS",
+    description:"from 6to 8 pm"
+  },{
+    id:3,
+    title:"Ai",
+    description:"from 6to 8 pm"
+  }
+])
 function onClickHandler(){
-  setTitle("Hello my name is "+Math.random())
+  setTodos([...Todos,{
+    id:Math.random(),
+    title:Math.random(),
+    description:Math.random()
+  }])
+
+    
 }
-
-
   return (
     <>
-    <Header title="Hello my nmae is Raman"></Header>
-    <Header title="Hello my name is mini"></Header>
-    <Header title="hello my name is suchata"></Header>
-    <Header title="Hello my name is RamanBahlala"></Header>
-    <Header title="hello my name is chandu"></Header>
-    <Header title={title}></Header>
-    <button onClick={onClickHandler}>Some thing is about to get changed</button>
-  
+    {Todos.map((todo)=>{
+      return <Todo key={todo.id} id={todo.id} title={todo.title} description={todo.description} ></Todo>
+    })}
+    <button onClick={onClickHandler}>Add Todo</button>
     </>
   )
 }
-
-const Header=React.memo(
-  function Header({title}){
-    console.log("Header Re -rendered")
-    return  <div>{title}</div>
-  }
-
-
-)
-
-
+const Todo=React.memo(function Todo({title,description,id}){
+  console.log("Todo Re rendered")
+  return <>
+  <h1>{id}</h1>
+  <h1>{title}</h1>
+  <h2>{description}</h2>
+  
+  
+  </>
+})
 export default App
