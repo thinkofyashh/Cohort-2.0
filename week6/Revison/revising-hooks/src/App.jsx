@@ -1,29 +1,46 @@
-
+import axios from "axios"
+import { useEffect, useState } from "react"
 function App() {
+  const [Todos,setTodo]=useState([{id:1,title:"DSA",description:"From 4 to 5 pm"}])
+  console.log("App re - rendered")
+
+  useEffect(()=>{
+    async function fetchData(){
+      console.log("useEffect called")
+      const res=await axios("https://sum-server.100xdevs.com/todos")
+      setTodo(res.data.todos)
+    }
+
+    fetchData()
+  },[])
+
   return (
     <>
-    <CardWrapper>
 
-<Greet></Greet>
+{Todos.map((todo)=>{
+  return <Todo title={todo.title} description={todo.description} id={todo.id} key={todo.id}></Todo>
+})}
 
-    </CardWrapper>
 
-    <CardWrapper>
+    
 
-      Hello again 
-    </CardWrapper>
+  
     </>
   )
 }
-function Greet(){
-  return <>
-  hello there welcome 
-  </>
-}
-function CardWrapper({children}){
+
+function Todo({title,description,id}){
+
   return (
-    <div style={{border:"20px solid black", padding:20, margin:20}}>{children}</div>
+    <>
+    <h1>{title}</h1>
+    <h2>{description}</h2>
+    <h3>{id}</h3>
+
+    
+    </>
   )
+
 }
 
 export default App
