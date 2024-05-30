@@ -2,6 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 function App() {
   const [Todos,setTodo]=useState([{id:1,title:"DSA",description:"From 4 to 5 pm"}])
+  const [selectedId,setId]=useState(1);
   console.log("App re - rendered")
 
   useEffect(()=>{
@@ -21,9 +22,24 @@ function App() {
   return <Todo title={todo.title} description={todo.description} id={todo.id} key={todo.id}></Todo>
 })}
 this is custom 
-<CustomTodo id={3}></CustomTodo>
-<CustomTodo id={4}></CustomTodo>
-<CustomTodo id={5}></CustomTodo>
+<button onClick={()=>{
+  console.log("id set to 1")
+  setId(1)
+}}>1</button>
+<button onClick={()=>{
+  console.log("id set to 2")
+  setId(2)
+}}>2</button>
+<button onClick={()=>{
+  console.log("id set to 3")
+  setId(3)
+}}>3</button>
+<button onClick={()=>{
+  console.log("id set to 4")
+  setId(4)
+}}>4</button>
+
+<CustomTodo id={selectedId}></CustomTodo>
 
     
 
