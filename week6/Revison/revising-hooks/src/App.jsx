@@ -1,34 +1,47 @@
 import axios from "axios"
-import { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState,Fragment } from "react"
 function App() {
 
   const [count,setCount]=useState(0);
-  let [inputValue,setInputValue]=useState(0);
 
 function onClickHandler(){
   setCount(count+1)
 }
-
-
-let counting =useMemo(()=>{
-  console.log("use memo gets called ")
-  let counting=0;
-  for(let i=0;i<=inputValue;i++){
-    counting=counting+i
-  }
-  return counting
-
-},[inputValue])
+// primitive dataype
+var a=1;
+// non primitive datatype
+function b(){
+  console.log("hello there")
+}
   return (
     <>  
     <button onClick={onClickHandler}>counter {count}</button> <br></br>
-    <input placeholder="Enter the Number" onChange={function(e){
-      setInputValue(e.target.value)
-    }}></input>
-    <br></br>
-    <div>{counting}</div>
+    <Demo a={a}></Demo><br></br>
+    <Demo1 b={b}></Demo1>
+    
     </>
   )
 }
+// is being getting called again again beacuse of non primitive datatype as react thinking something has chanaegd . beacuse everytime the react re renders it create new instance so it changes refrences
+const Demo1=React.memo(function Demo1(){
+  console.log("memo1 got called")
+  return (
+    <>
+    hi 
+    
+    </>
+  )
+})
+// its a primitive data types react compres its with value .
+const Demo=React.memo(function Demo(){
+  console.log("memo got called")
+  return (
+    <>
+    hi three
+    
+    </>
+  )
+})
+
 
 export default App
