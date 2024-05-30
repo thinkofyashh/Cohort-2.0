@@ -4,35 +4,28 @@ function App() {
 
   const [count,setCount]=useState(0);
   let [inputValue,setInputValue]=useState(0);
+  let [finalValue,setfinalValue]=useState(0)
 
 function onClickHandler(){
   setCount(count+1)
 }
-
-function findSum(val1){
-  inputValue=0;
-  for(let i=0;i<=val1;i++){
-    inputValue=inputValue+i;
+// the problem with this apprach is as it causes unnessasry re rendering . everytime the input value change(it triggers re render) and everytime finalvalue changes (it again causes re renders).
+useEffect(()=>{
+  console.log("useEffect got called")
+  let counting=0;
+  for(let i=0;i<=inputValue;i++){
+    counting=counting+i
   }
-  return inputValue;
-  
-
-}
+  setfinalValue(counting);
+},[inputValue])
   return (
     <>  
     <button onClick={onClickHandler}>counter {count}</button> <br></br>
-
     <input placeholder="Enter the Number" onChange={function(e){
-      const val1=e.target.value
-      const ans=findSum(val1);
-      setInputValue(ans)
+      setInputValue(e.target.value)
     }}></input>
-<br></br>
-    {inputValue}
-
-    
-
-
+    <br></br>
+    <div>{finalValue}</div>
     </>
   )
 }
