@@ -1,5 +1,5 @@
 import axios from "axios"
-import React, { useEffect, useMemo, useState,Fragment } from "react"
+import React, { useEffect, useMemo, useState,Fragment, useCallback } from "react"
 function App() {
 
   const [count,setCount]=useState(0);
@@ -10,9 +10,11 @@ function onClickHandler(){
 // primitive dataype
 var a=1;
 // non primitive datatype
-function b(){
-  console.log("hello there")
-}
+var b= useCallback(()=>{
+  function b(){
+    console.log("hello there")
+  }
+},[])
   return (
     <>  
     <button onClick={onClickHandler}>counter {count}</button> <br></br>
