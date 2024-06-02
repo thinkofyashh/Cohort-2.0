@@ -1,50 +1,42 @@
+import { set } from "mongoose"
+import { useState } from "react"
 
-import {Suspense, lazy} from 'react'
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
- const DashBoard= lazy(()=> import('./pages/DashBoard')) 
-const Landing= lazy(()=> import('./pages/Landing'))
+
 function App() {
-
-
+  const [count,setCount]=useState(0)
   return (
     <div>
-
-      
-
-    <BrowserRouter>
-    <AppBar></AppBar>
-    <Suspense fallback={"loading...."}>
-    <Routes>
-      <Route path='/dashboard' element={<DashBoard></DashBoard>}></Route>
-      <Route path='/landing' element={<Landing></Landing>}></Route>
-    </Routes>
-    </Suspense>
-    </BrowserRouter>
-
-
-
+      <Count count={count} setCount={setCount}></Count><br></br>
     </div>
   )
 }
 
-function AppBar(){
-  const navigate=useNavigate()
+function Count({count,setCount}){
+  return (<>
+  <CountRender count={count}></CountRender>
+   <Buttons count={count} setCount={setCount}></Buttons>
+  </>)
+}
+
+function CountRender({count}){
+  return(
+    <>
+    {count}
+    </>
+  )
+}
+
+function Buttons({count,setCount}){
   return (
     <>
     <button onClick={()=>{
-      
-      navigate("/landing")
-
-      }}>Landing</button>
-
-      <button onClick={()=>{
-
-        navigate("/dashboard")
-
-      }}>DashBoard</button>
-    
+      setCount(count+1)
+    }}>Increase</button>
+    <button onClick={()=>{
+      setCount(count-1)
+    }}>Decrease</button>
     </>
-  )
+  ) 
 }
 
 export default App
