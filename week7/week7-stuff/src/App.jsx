@@ -1,7 +1,8 @@
 
+import {Suspense, lazy} from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
-import { DashBoard } from './pages/DashBoard'
-import { Landing } from './pages/Landing'
+ const DashBoard= lazy(()=> import('./pages/DashBoard')) 
+const Landing= lazy(()=> import('./pages/Landing'))
 function App() {
 
 
@@ -12,10 +13,12 @@ function App() {
 
     <BrowserRouter>
     <AppBar></AppBar>
+    <Suspense fallback={"loading...."}>
     <Routes>
       <Route path='/dashboard' element={<DashBoard></DashBoard>}></Route>
       <Route path='/landing' element={<Landing></Landing>}></Route>
     </Routes>
+    </Suspense>
     </BrowserRouter>
 
 
