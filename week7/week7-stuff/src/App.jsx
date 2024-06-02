@@ -6,14 +6,22 @@ function App() {
 
 
   return (
+    <div>
+
+      <div style={{background:'black', color:'white'}}>
+        This is a Top Bar
+      </div>
+
     <BrowserRouter>
     <Routes>
       <Route path='/dashboard' element={<DashBoard></DashBoard>}></Route>
       <Route path='/landing' element={<Landing></Landing>}></Route>
-
-
     </Routes>
     </BrowserRouter>
+
+
+
+    </div>
   )
 }
 
