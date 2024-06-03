@@ -1,32 +1,35 @@
 import { set } from "mongoose"
-import { useState } from "react"
+import { createContext, useContext, useState } from "react"
+import { CountContext } from "./context"
 
 
 function App() {
   const [count,setCount]=useState(0)
   return (
     <div>
-      <Count count={count} setCount={setCount}></Count><br></br>
+      <CountContext.Provider value={count}>
+      <Count setCount={setCount}></Count><br></br>
+      </CountContext.Provider>
+      
     </div>
   )
 }
-
-function Count({count,setCount}){
+function Count({setCount}){
   return (<>
-  <CountRender count={count}></CountRender>
-   <Buttons count={count} setCount={setCount}></Buttons>
+  <CountRender ></CountRender>
+   <Buttons setCount={setCount}></Buttons>
   </>)
 }
-
-function CountRender({count}){
+function CountRender(){
+  const count=useContext(CountContext)
   return(
     <>
     {count}
     </>
   )
 }
-
-function Buttons({count,setCount}){
+function Buttons({setCount}){
+  const count=useContext(CountContext)
   return (
     <>
     <button onClick={()=>{
