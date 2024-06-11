@@ -1,16 +1,12 @@
-import { set } from "mongoose"
-import { createContext, useContext, useState } from "react"
-import { CountContext } from "./context"
-
+import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
+import { countAtom } from "./store/atom/count";
 
 function App() {
-  const [count,setCount]=useState(0)
   return (
     <div>
-      <CountContext.Provider value={{count,setCount}}>
-      <Count></Count><br></br>
-      </CountContext.Provider>
-      
+      <RecoilRoot>
+      <Count></Count><br></br> 
+      </RecoilRoot>    
     </div>
   )
 }
@@ -22,7 +18,7 @@ function Count(){
   </>)
 }
 function CountRender(){
-  const {count}=useContext(CountContext)
+  const count=useRecoilValue(countAtom);
   return(
     <>
     {count}
@@ -30,7 +26,7 @@ function CountRender(){
   )
 }
 function Buttons(){
-  const {count,setCount}=useContext(CountContext)
+  const [count,setCount]=useRecoilState(countAtom)
   
   return (
     <>
