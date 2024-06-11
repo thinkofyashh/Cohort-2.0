@@ -15,6 +15,7 @@ function App() {
   )
 }
 function Count(){
+  console.log("Count is Re - rendered even tho it not uses COunt or setCount")
   return (<>
   <CountRender ></CountRender>
    <Buttons></Buttons>
