@@ -1,5 +1,6 @@
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
-import { countAtom } from "./store/atom/count";
+import { countAtom, isEven } from "./store/atom/count";
+import { useMemo } from "react";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function Count(){
   return (<>
   <CountRender ></CountRender>
    <Buttons></Buttons>
+   <CustomDiv></CustomDiv>
   </>)
 }
 function CountRender(){
@@ -38,6 +40,15 @@ function Buttons(){
     }}>Decrease</button>
     </>
   ) 
+}
+
+function CustomDiv(){
+  const ans=useRecoilValue(isEven)
+  return(
+    <>
+    {ans ?<div>It is Even</div>:<div>It is odd</div>}
+    </>
+  )
 }
 
 export default App
