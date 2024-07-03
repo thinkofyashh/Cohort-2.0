@@ -1,13 +1,13 @@
 export default function Test(){
     return(
-        <div className="grid grid-cols-12">
-            <div className="col-span-12 md: col-span-5 ">
+        <div >
+            <div style={{background:"green", color:"black"}}>
                 hey there from the first div
             </div>
-            <div className="col-span-12 md: col-span-5">
+            <div className="bg-green-500 text-red-500" >
                 Hi there from the second div
             </div>
-            <div className="col-span-12 md: col-span-2">
+            <div >
                 Hi there from the third div
             </div>
         </div>
