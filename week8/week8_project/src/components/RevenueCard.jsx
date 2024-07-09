@@ -14,7 +14,7 @@ export  default function RevenueCard({title,amount,count}){
                 <div className="font-bold pt-6 text-2xl ">
                     ${amount}
                 </div>
-                {count ?<div className="pt-6 text-blue-700 flex">
+                {count ?<div className="pt-6 text-blue-700 flex justify-between">
                     <div className="underline decoration-solid">
                     {count} orders 
                     </div>
