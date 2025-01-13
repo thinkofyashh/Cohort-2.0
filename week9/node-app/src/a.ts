@@ -1,24 +1,16 @@
-interface Person{
-    name: string,
-    age:number
-    greet(phrase:string):void
-};
-
-class Employee implements Person{
-    name: string;
-    age:number;
-
-    constructor(n:string,a:number){
-        this.name=n;
-        this.age=a;
-    }
-    greet(phrase:string):void{
-        `${this.name} ${phrase}`;
-    }
-
+type Person={
+    firstname:string,
+    lastname: string,
+    age: number,
 }
-const e = new Employee("yash",21);
-console.log(e.name);
+
+
+function greet(id:(string | number)):void{
+    console.log(`Hello, ${id}`);
+}
+
+greet(12);
+greet("12");
     
 
 
