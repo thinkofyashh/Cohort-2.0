@@ -1,27 +1,24 @@
-import { number, object } from "zod";
-
-const user:User={
-    firstname:"yash",
-    lastname:"rawat",
-    email:"yashrawat682@gmail.com",
-    age:22
-};
-interface User{
-    firstname:string,
-    lastname:string,
-    email?:string,
+interface Person{
+    name: string,
     age:number
+    greet(phrase:string):void
 };
-function isLegal(user:User):Boolean{
-    if(user.age > 18) return true;
-    else return false;
-}
-function greet(user:User):void{
-console.log(user.firstname);
-}
 
-greet(user);
+class Employee implements Person{
+    name: string;
+    age:number;
 
+    constructor(n:string,a:number){
+        this.name=n;
+        this.age=a;
+    }
+    greet(phrase:string):void{
+        `${this.name} ${phrase}`;
+    }
+
+}
+const e = new Employee("yash",21);
+console.log(e.name);
     
 
 
