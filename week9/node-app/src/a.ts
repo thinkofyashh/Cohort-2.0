@@ -1,6 +1,10 @@
+
+// declaring varible in the typescript 
+let lastname="hello";
+
 // creating function in the typescript 
 
-function greet (firstname: string){
+function greet (firstname){
     return console.log("hello "+firstname);
 }
 
@@ -32,3 +36,8 @@ function after1sec(fnc:()=>void){
 after1sec(function(){
     console.log("hello after 1 sec")
 })
+
+const firstname=()=>{console.log("helllo world")};
+
+
+const greeting=(name:string)=>{ `hello ${name}`};
