@@ -1,11 +1,9 @@
-function input1(inp: string ): string {
-    return inp;
-}
-
-function input2(inp:number):number{
-    return inp*2;
+function identity<t>(arg:t):t{
+    return arg;
 }
 
 
-const ans1=input1("yash");
-const ans2=input2(123);
+const iden1=identity<string>("heelo baby");
+const iden2=identity<number>(123);
+
+console.log(iden1.toUpperCase());
