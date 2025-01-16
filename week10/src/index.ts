@@ -2,32 +2,23 @@
 
 import { Client} from "pg";
 
-const client=new Client({
+const client = new Client({
     connectionString:"postgresql://postgres:mysecretpassword@localhost/postgres"
+    
 })
-async function createUserTable(){
+
+async function insertData(){
     try{
         await client.connect();
-        const result = await client.query(
-            
-            `
-            CREATE TABLE users(
-            id SERIAL PRIMARY KEY,
-            username VARCHAR(255) UNIQUE NOT NULL,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-
-        )
-            
-            `
-            
-        )
-        console.log(result);
+        const query=`INSERT INTO users (username,email,password) VALUES('yashrawat1','yashrawatr@gmail.com','1234345');` ;
+        const res = await client.query(query);
+        console.log(res);
 
     }catch(error){
-        console.log("Error creating user table",error)
+        console.log(error);
+    }finally{
+        await client.end();
     }
+    
 }
-createUserTable();
-
+insertData();

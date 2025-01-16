@@ -14,47 +14,20 @@ const pg_1 = require("pg");
 const client = new pg_1.Client({
     connectionString: "postgresql://postgres:mysecretpassword@localhost/postgres"
 });
-function createUserTable() {
+function insertData() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield client.connect();
-            const result = yield client.query(`
-            CREATE TABLE users(
-            id SERIAL PRIMARY KEY,
-            username VARCHAR(255) UNIQUE NOT NULL,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-
-        )
-            
-            `);
-            console.log(result);
+            const query = `INSERT INTO users (username,email,password) VALUES('yashrawat1','yashrawatr@gmail.com','1234345');`;
+            const res = yield client.query(query);
+            console.log(res);
         }
         catch (error) {
-            console.log("Error creating user table", error);
-        }
-    });
-}
-createUserTable();
-function insertUserdata() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const client1 = new pg_1.Client({
-            connectionString: "postgresql://postgres:mysecretpassword@localhost/postgres"
-        });
-        try {
-            yield client1.connect();
-            const result = yield client1.query(`
-        
-            INSERT INTO users (username,email,password) VALUES ('yashRawat','yashrawat@gmail.com','1234534');`);
-            console.log(result);
-        }
-        catch (error) {
-            console.log("Error inserting the data in the database.", error);
+            console.log(error);
         }
         finally {
-            yield client1.end();
+            yield client.end();
         }
     });
 }
-insertUserdata();
+insertData();
