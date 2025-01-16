@@ -1,4 +1,4 @@
-// write a function to create a user table in the database .
+// write a function to insert data in the users table in the database .
 
 import { Client} from "pg";
 
@@ -7,11 +7,12 @@ const client = new Client({
     
 })
 
-async function insertData(){
+async function insertData(username : string, email: string, password:string ){
     try{
         await client.connect();
-        const query=`INSERT INTO users (username,email,password) VALUES('yashrawat1','yashrawatr@gmail.com','1234345');` ;
-        const res = await client.query(query);
+        const query=`INSERT INTO users (username,email,password) VALUES($1,$2,$3);` ;
+        const values =[username,email,password]
+        const res = await client.query(query,values);
         console.log(res);
 
     }catch(error){
@@ -21,4 +22,4 @@ async function insertData(){
     }
     
 }
-insertData();
+insertData('manak','manakchaudhary@gmail.com','123442');
