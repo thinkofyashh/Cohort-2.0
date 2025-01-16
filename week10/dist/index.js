@@ -14,21 +14,28 @@ const pg_1 = require("pg");
 const client = new pg_1.Client({
     connectionString: "postgresql://postgres:mysecretpassword@localhost/postgres"
 });
-function insertData(username, email, password) {
+function getUserdata(email) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield client.connect();
-            const query = `INSERT INTO users (username,email,password) VALUES($1,$2,$3);`;
-            const values = [username, email, password];
-            const res = yield client.query(query, values);
-            console.log(res);
+            const query = `SELECT * FROM users WHERE email=$1`;
+            const value = [email];
+            const result = yield client.query(query, value);
+            if (result.rows.length > 0) {
+                console.log("user founded", result.rows[0]);
+                return result.rows[0];
+            }
+            else {
+                console.log("user not found");
+                return null;
+            }
         }
         catch (error) {
-            console.log(error);
+            console.log("error", error);
         }
         finally {
             yield client.end();
         }
     });
 }
-insertData('manak', 'manakchaudhary@gmail.com', '123442');
+getUserdata('manakchaudhary@gmail.com');
