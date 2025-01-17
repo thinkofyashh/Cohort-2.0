@@ -3,28 +3,16 @@ import { Interface } from 'readline'
 
 const prisma = new PrismaClient()
 
-
-
-
-
- interface updateParams{
-    firstname:string
-    lastname:string
-}
-async function updateUser(email:string,updatedValue:updateParams){
-    try{
-        const res =await prisma.user.update({
-            where: { email },
-            data:{
-                firstname:updatedValue.firstname,
-                lastname:updatedValue.lastname
-            }
-            
+async function getUser(email:string){
+    try {
+        const res=await prisma.user.findFirst({
+            where:{email}
         })
         console.log(res);
-    }catch(error){
-
-        console.log(error);
+    }catch(err){
+        console.log(err);
     }
+
 }
-updateUser("ysahRwaru@gmail.com",{firstname:"manak",lastname:"chaudhary"})
+
+getUser("ysahRwaru@gmail.com")
