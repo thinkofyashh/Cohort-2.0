@@ -1,4 +1,4 @@
-// write a function to insert data in the users table in the database .
+// write a function to get the data in the users table in the database .
 
 import { Client} from "pg";
 
