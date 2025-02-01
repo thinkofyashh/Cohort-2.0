@@ -6,15 +6,14 @@ interface User{
     email:string;
 }
 
-type Users=Record<number,User>;
+type roles='admin'|'developers'|'manager';
 
-
-const userArr:Users={
-    1:{id:1,name:"John",email:"john@example.com"},
-    2:{id:2,name:"Jane",email:"jane@example.com"},
+function allowedRoles(role:Exclude<roles,'manager'>):void{
+    console.log('You are allowed to access this page');
 }
 
-console.log(userArr);
+
+
 
 
 
