@@ -1,16 +1,17 @@
+import {z} from 'zod' ;
 
 
-interface User{
-    id:number;
-    name:string;
-    email:string;
-}
 
-type roles='admin'|'developers'|'manager';
+const userSchema=z.object(
+    {
+        name:z.string(),
+        email:z.string().email(),
+    }
+)
 
-function allowedRoles(role:Exclude<roles,'manager'>):void{
-    console.log('You are allowed to access this page');
-}
+
+type userSchematype=z.infer<typeof userSchema>;
+
 
 
 
