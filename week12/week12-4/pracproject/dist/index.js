@@ -37,4 +37,23 @@ function createUserTable() {
         }
     });
 }
+function insertUserData(id, name, email, password) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            // await client.connect();
+            const res = yield client.query(`
+            INSERT INTO userTable(id,name,email,password) VALUES ($1,$2,$3,$4)
+
+            `, [id, name, email, password]);
+            console.log("inserted", res);
+        }
+        catch (e) {
+            console.log("problem occured", e);
+        }
+        finally {
+            yield client.end();
+        }
+    });
+}
 createUserTable();
+insertUserData(1, 'yash', 'yash@gmail.com', '1234');

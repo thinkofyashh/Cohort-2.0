@@ -32,4 +32,22 @@ async function createUserTable(){
     
 }    
 
+async function insertUserData(id:number,name:string,email:string,password:string){
+    try{
+       // await client.connect();
+        const res=await client.query(
+            `
+            INSERT INTO userTable(id,name,email,password) VALUES ($1,$2,$3,$4)
+
+            `,[id,name,email,password]
+        )
+        console.log("inserted",res)
+    }catch(e){
+        console.log("problem occured",e);
+    }finally{
+        await client.end();
+    }
+}
+
 createUserTable();
+insertUserData(1,'yash','yash@gmail.com','1234');
