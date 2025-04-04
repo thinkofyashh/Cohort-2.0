@@ -21,4 +21,13 @@ function insertUser(username, password, firstname, lastname) {
         console.log(res);
     });
 }
-insertUser("test22", "te21st", "te32st", "tes22t");
+//insertUser("test22","te21st","te32st","tes22t");
+function getTodos(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield prisma.todo.findMany({
+            where: { userId }
+        });
+        console.log(res);
+    });
+}
+getTodos(1);
