@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+import { userInfo } from "os";
+import { number } from "zod";
 
 const prisma =new PrismaClient()
 
@@ -12,8 +14,15 @@ async function insertUser(username:string,password:string,firstname:string,lastn
     console.log(res);
 }
 
-//insertUser("test22","te21st","te32st","tes22t");
 
+//insertUser("test22","te21st","te32st","tes22t");
+async function createTodos(title:string,des:string,userId:number){
+    const res=await prisma.todo.create({
+        data:{
+            title,description:des,userId
+        }})
+}
+createTodos("gym","go to the gym",1);
 async function getTodos(userId:number){
     const res=await prisma.todo.findMany({
         where:{userId}
@@ -21,4 +30,18 @@ async function getTodos(userId:number){
     console.log(res);
 }
 
-getTodos(1);
+async function getUserAndTodo(userId:number){
+    const res=await prisma.todo.findMany({
+        where:{userId},
+        select:{
+            id:true,
+            title:true,
+            description:true,
+            user:true
+        }
+    })
+    console.log(res);
+}
+getUserAndTodo(1);
+
+//getTodos(1);

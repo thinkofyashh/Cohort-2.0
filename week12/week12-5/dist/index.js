@@ -22,6 +22,16 @@ function insertUser(username, password, firstname, lastname) {
     });
 }
 //insertUser("test22","te21st","te32st","tes22t");
+function createTodos(title, des, userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield prisma.todo.create({
+            data: {
+                title, description: des, userId
+            }
+        });
+    });
+}
+createTodos("gym", "go to the gym", 1);
 function getTodos(userId) {
     return __awaiter(this, void 0, void 0, function* () {
         const res = yield prisma.todo.findMany({
@@ -30,4 +40,19 @@ function getTodos(userId) {
         console.log(res);
     });
 }
-getTodos(1);
+function getUserAndTodo(userId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const res = yield prisma.todo.findMany({
+            where: { userId },
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                user: true
+            }
+        });
+        console.log(res);
+    });
+}
+getUserAndTodo(1);
+//getTodos(1);
