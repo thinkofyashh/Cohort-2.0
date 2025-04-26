@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "./Button";
 export  const  SignInComponent=()=>{
     return  <>
     <div className="h-screen flex items-center justify-center bg-gray-100">
@@ -6,12 +7,9 @@ export  const  SignInComponent=()=>{
           <h2 className="text-3xl font-bold text-center mb-6">Sign in</h2>
           <LabelledInput label="Username" placeholder="harkirat@gmail.com" />
           <LabelledInput label="Password" type="password" placeholder="123456" />
-          <button
-            type="button"
-            className="mt-6 w-full bg-gray-900 text-white font-semibold py-2 rounded-lg hover:bg-gray-800 transition"
-          >
-            Sign in
-          </button>
+          
+          
+         <Button></Button>
         </div>
       </div>
     
