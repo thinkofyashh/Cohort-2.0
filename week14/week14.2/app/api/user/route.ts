@@ -1,12 +1,12 @@
 import { NextRequest } from "next/server"
 import { PrismaClient } from '@prisma/client';
-
+import {client} from "@/db"
 
 
 // Use the prisma client in your code
 
 
-const client = new PrismaClient()
+//const client = new PrismaClient()
 
 
 export async function POST(req:NextRequest){

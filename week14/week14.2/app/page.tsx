@@ -1,7 +1,7 @@
 import axios from "axios"
 import { PrismaClient } from '@prisma/client';
-
-const client = new PrismaClient()
+import {client} from "@/db"
+//const client = new PrismaClient()
 
 async function getUserDetails(){
  // const res= await axios.get("http://localhost:3000/api/user")
@@ -27,6 +27,7 @@ export default async function Home() {
                 </div>
                 
                 {user?.email}
+                
             </div>
         </div>
     </div> 
