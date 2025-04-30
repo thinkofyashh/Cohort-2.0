@@ -1,13 +1,18 @@
-import Image from "next/image";
 import axios from "axios"
+import { PrismaClient } from '@prisma/client';
 
+const client = new PrismaClient()
 
 async function getUserDetails(){
-  const res= await axios.get("https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details")
-  return res.data;
+ // const res= await axios.get("http://localhost:3000/api/user")
+ const res=await client.user.findFirst({});
+ return {
+  username:res?.username,
+  email:res?.email
+ }
+
+  
 }
-
-
 
 export default async function Home() {
   const user=await getUserDetails()
@@ -18,15 +23,13 @@ export default async function Home() {
         <div className="flex justify-center">
             <div className="border p-8 rounded">
                 <div>
-                    Name: {user?.name}
+                    Name: {user?.username}
                 </div>
                 
                 {user?.email}
             </div>
         </div>
-    </div>
-
-    
+    </div> 
     </>
   );
 }
