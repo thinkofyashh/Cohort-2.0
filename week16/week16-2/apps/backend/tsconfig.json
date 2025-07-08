@@ -1,3 +1,4 @@
+
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
@@ -6,7 +7,7 @@
     "rootDir": "./src"
   },
   "exclude": ["node_modules"],
-  "include": ["."]
+  "include": ["src/**/*"]
 }
 
 
