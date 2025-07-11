@@ -1,8 +1,10 @@
 "use client"
 import { useRouter } from "next/navigation"
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Appbar(){
+    const session =useSession();
+    
    // const router = useRouter()
     return <div>
         <button onClick={()=>{
@@ -13,6 +15,11 @@ export default function Appbar(){
             signOut()
         }}>Log out </button>
 
+       {JSON.stringify(session)}
+
+
+
 
     </div>
+   
 }
